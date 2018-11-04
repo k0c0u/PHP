@@ -60,6 +60,9 @@ function reduce($a, $b) {
 }
 
 function divide($a, $b) {
+    if($b == ) {
+        return 'На ноль делить нельзя';
+    }
     return $a / $b;
 }
 
@@ -86,3 +89,47 @@ function mathOperation($arg1, $arg2, $operation) {
             return divide($arg1, $arg2);
     }
 }
+//5
+/*<?=date("Y")?>*/
+
+//6
+function power($val, $pow) {
+    if($pow == 1){
+        return $val;
+    }
+
+     if($pow < 0){
+         return power(1/$val, $pow-1);
+     }
+
+    return $val * power($val, $pow-1);
+}
+
+$a = power(5,5);
+echo "Ответ: $a";
+
+//7
+function timeNow ($hour, $minute) {
+    if ($hour%100 == 0 || ($hour%100 >= 5 && $hour%100 <= 20)) {
+        $result .= $hour.' часов ';
+    }
+    elseif ($hour%10 == 1) {
+        $result .= $hour.' час ';
+    }
+    else {
+        $result .= $hour.' часа ';
+    }
+
+    if ($minute%10 == 0 || ($minute%10 >= 5 && $minute%10 <= 9) || ($minute%100 >= 11 && $minute%100 <= 14)) {
+        $result .= $minute.' минут ';
+    }
+    elseif ($minute%10 == 1) {
+        $result .= $minute.' минута ';
+    }
+    else {
+        $result .= $minute.' минуты ';
+    }
+    return $result;
+}
+echo (timeNow(date('G'), date ('i')));
+?>

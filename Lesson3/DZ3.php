@@ -2,10 +2,11 @@
 //1
 $number = 0;
 while ($number <= 100) {
-    if ($number % 3 == 0) {
-        echo $number++ . ' ';
+    if ($number%3 == 0) {
+        echo '$number++ | ';
+        $number++;
     }
-    $number++;
+
 }
 
 //2
@@ -31,20 +32,14 @@ $array = [
     "Липецкая область" => ["Липецк", "Елец", "Грязи", "Лебедянь", "Задонск", "Кривополянье"]
 ];
 foreach ($array as $state => $towns) {
-    echo "<b>$state:</b><br>";
-    foreach ($towns as $key => $value) {
-        $comma = ($key < count($towns) - 1) ? ", " : "";
-        echo "$value" . $comma;
-    }
-    echo "<br>";
+    echo $state . ":<br>";
+    echo implode (", ", $towns) . "<br>";
 }
 
 //4
 
-$string = "<p></p>";
-function translit($string)
-{
-    $dictionary = [
+function transLiter($str) {
+    $alfavite = [
         "а" => "a",
         "б" => "b",
         "в" => "v",
@@ -79,23 +74,79 @@ function translit($string)
         "ю" => "yu",
         "я" => "ya"
     ];
-    // Преобразование строки в массив. Решение проблемы с UTF-8
-    // https://stackoverflow.com/questions/21653033/php-how-to-split-a-utf-8-string
-    $stringToArray = preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY);
-    foreach ($stringToArray as $key => $character) {
-        foreach ($dictionary as $rus => $trans) {
-            if ($character == $rus) {
-                $stringToArray[$key] = $trans;
-                break;
-            } elseif ($character == mb_strtoupper($rus)) {
-                // mb_strtoupper — Приведение строки к верхнему регистру (Функции для работы с Многобайтными строками)
-                $stringToArray[$key] = mb_strtoupper($trans);
-                break;
+    $str = mb_strtolower ($str);//ривожу к нижнему регистру
+    $res = strtr($str, $alfavite);
+
+    return $res;
+}
+echo transLiter("ПриВет");
+
+//5
+
+function replace ($str) {
+    return str_replace(" ", "_", $str);
+}
+
+echo replace("я люблю php!");
+?>
+//6
+
+<?php
+$menu = [
+    "Первый пункт" => ["первый подпункт первого пункта", "второй подпункт первого пункта"],
+    "Второй пункт" => ["первый подпункт второго пункта", "второй подпункт второго пункта"],
+    "Третий пункт" => ["первый подпункт третьего пункта", "второй подпункт третьего пункта"]
+];
+echo "<ul>";
+foreach ($menu as $key => $val) { ?>
+    <li><?php echo $key; ?>
+
+            <ul>
+                <?php
+
+                foreach ($val as $item) { ?>
+                <li><?=$item; ?></li>
+                <?php }
+
+                ?>
+            </ul>
+
+    </li>
+<?php }
+echo "</ul>";
+
+?>
+
+//7
+
+<?php
+
+for($i = 0; $i < 10; print $i++) {}
+
+?>
+
+//8
+
+<?php
+
+foreach ($regions as $state => $towns) {
+    echo $state . ':<br>';
+        foreach ($towns as $town) {
+            if (mb_substr($town, 0, 1)== 'K') {
+                echo $town . ' ';
             }
         }
-    }
-    // implode — Объединяет элементы массива в строку
-    return implode($stringToArray);
+        echo '<br>';
 }
-echo "<b>Исходная строка:</b> $string <hr>";
-echo "<b>Транслитерация:</b>" . translit($string);
+?>
+
+//10
+
+<?php
+$article = 'Заметки юного путешественника';
+function beauty_url ($text) {
+    return its_to_this(' ', ' ', rus_to_eng($text));
+}
+
+echo beauty_url($article);
+?>
