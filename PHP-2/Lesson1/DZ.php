@@ -1,29 +1,55 @@
 <?php
-    $a = 5;
-    $b = '05';
-    var_dump($a == $b); // Значение переменной $b будет преобразовано в число, начальный ноль игнорируется, 5 = 5, что является правдой (true).
-    var_dump((int)'012345'); // Строка преобразуется в число, а начальные нули отсекаются.
-    var_dump((float)123.0 === (int)123.0); // "===" - Сравнение по значению и типу. Тип float не равен типу integer, хотя значения равны.
-    var_dump((int)0 === (int)'hello, world'); //  При преобразовании строки в число, значение определяется по начальной части строки. Если строка начинается с верного числового значения, будет использовано это значение. Иначе значением будет 0 (ноль). Верное числовое значение - это одна или более цифр (могущих содержать десятичную точку), по желанию предваренных знаком, с последующим необязательным показателем степени. Показатель степени - это 'e' или 'E' с последующими одной или более цифрами. В итоге, оба значения равны 0 = 0 + одинаковые типы данных, следовательно 'true'.
+//Задание 1,2,3
+class Goods {
+    public $id;
+    public $title;
+    public $price;
+    function getGoods() {
+        return "{$this->id}<br> {$this->title}<br> {$this->price}<br>";
+    }
+}
+$goods2 = new Goods();
+$goods2->id = 7;
+$goods2->title = "tempTit";
+$goods2->price = 100;
+echo $goods2->getGoods()."<br>";
+
+//Задание 4
+class Product2 extends Goods {
+    public $description;
+    public $author;
+    public $clockspeed;
+    function getCommodity() {
+        return "{$this->description}<br> {$this->author}<br>";
+    }
+}
+$goods3 = new Product2();
+$goods3->id = 10;
+$goods3->title = "titleTemp";
+$goods3->price = 220;
+$goods3->description = "Book";
+$goods3->author = "Pushkin";
+echo $goods3->getGoods();
+echo $goods3->getCommodity()."<br>";
+
+//Задание 5
+class A1 {
+    public function foo1() {
+        static $x1 = 0;
+        echo ++$x1."<br>";
+    }
+}
+
+$a11 = new A1(); //создаём объект класса А1
+$a21 = new A1(); //создаём объект класса А1
+
+$a11->foo1(); //обращаемся к функции foo1 класса А1, значение значение х1 в которой становится равной 1
+$a21->foo1(); //обращаемся к функции foo1 класса А1, значение значение х1 в которой становится равной 2
+$a11->foo1(); //обращаемся к функции foo1 класса А1, значение значение х1 в которой становится равной 3
+$a21->foo1(); //обращаемся к функции foo1 класса А1, значение значение х1 в которой становится равной 4
+echo "<br>";
+
+
+
 ?>
 
-
-$title = 'Home Work 1';
-$currentYear = date('Y');
-?>
-
-<head>
-    <title><?= $title ?></title>
-</head>
-<body>
-<h1><?= $currentYear ?></h1>
-</body>
-
-<?php
-$a = 7;
-$b = 8;
-
-$a=$a+$b;
-$b=$a-$b;
-$a=$a-$b;
-?>
