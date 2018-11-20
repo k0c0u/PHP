@@ -1,0 +1,20 @@
+{
+    "name": "mirra/php-2",
+    "description": "PHP Level 2",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "k0c0u",
+            "email": "k0c0u@mail.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "./app"
+        }
+    },
+    "require": {
+        "twig/twig": "^2.0"
+    }
+}
